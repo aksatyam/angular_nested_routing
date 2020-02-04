@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MustMatchDirective } from '../_helpers/must-match.directive';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    MustMatchDirective
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }

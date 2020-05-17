@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -8,14 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
   model: any = {};
-
+  getCountry: Subscription;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('https://restcountries.eu/rest/v2/all')
+    this.getCountry = this.http.get('https://restcountries.eu/rest/v2/all')
       .subscribe(res => {
         console.log(res);
       })
+  }
+
+  ngOnDestroy() {
+    // ...
+
+    if (this.getCountry) this.getCountry.unsubscribe();
   }
 
   onSubmit() {
